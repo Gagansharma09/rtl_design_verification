@@ -1,30 +1,53 @@
-`timescale 1ns/1ps
+// Code your testbench here
+// or browse Examples
+// self cheking one till now 
 module tb_half_adder;
-    logic a, b, sum, cout;
+    logic a;
+    logic b;
+    logic cout;
+    logic sum;
 
-    half_adder dut(.a(a), .b(b), .sum(sum), .cout(cout));
+ //dut 
+  half_adder dut(
+    .a(a),
+    .b(b),
+    .sum(sum),
+    .cout(cout));
+ //stimulus 
+  initial begin
+    $display("a,b,cout,sum");
+    a = 0 ;b = 0;
+    #10
+    if(sum!=(a^b))
+      $error(" sum mismatch");
+    if(cout!=(a&b))
+      $error("cout mismatch");
+    $display("%b %b | %b %b",a,b,cout,sum);
+    a = 0 ;b = 1;
+    #10
+    if(sum!=(a^b))
+      $error(" sum mismatch");
+    if(cout!=(a&b))
+      $error("cout mismatch");
+    $display("%b %b | %b %b",a,b,cout,sum);
+    a = 1 ;b = 0;
+    #10
+    if(sum!=(a^b))
+      $error(" sum mismatch");
+    if(cout!=(a&b))
+      $error("cout mismatch");
+    $display("%b %b | %b %b",a,b,cout,sum);
+    a = 1 ;b = 1;
+    #10
+    if(sum!=(a^b))
+      $error(" sum mismatch");
+    if(cout!=(a&b))
+      $error("cout mismatch");
+    $display("%b %b | %b %b",a,b,cout,sum);
+    #10
 
-    // Expected values
-    logic exp_sum, exp_cout;
-    int   errors = 0;
+    $finish;
+  end
+endmodule 
 
-    initial begin
-        $display("=== Half Adder Testbench ===");
-        for (int i = 0; i < 4; i++) begin
-            {a, b} = i[1:0];
-            #10;
-            exp_sum  = a ^ b;
-            exp_cout = a & b;
-            if (sum !== exp_sum || cout !== exp_cout) begin
-                $error("FAIL a=%b b=%b | sum=%b(exp %b) cout=%b(exp %b)",
-                        a, b, sum, exp_sum, cout, exp_cout);
-                errors++;
-            end else begin
-                $display("PASS a=%b b=%b => sum=%b cout=%b", a, b, sum, cout);
-            end
-        end
-        if (errors == 0) $display("ALL TESTS PASSED");
-        else             $display("%0d TEST(S) FAILED", errors);
-        $finish;
-    end
-endmodule
+  
