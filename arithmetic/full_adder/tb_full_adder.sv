@@ -1,25 +1,37 @@
-`timescale 1ns/1ps
+// Code your testbench here
+// or browse Examples
+//assertion based
 module tb_full_adder;
-    logic a, b, cin, sum, cout;
-    int   errors = 0;
+        logic in1;
+        logic in2;
+        logic cin;
+        logic cout;
+        logic sum;
+   //dut
+  full_adder dut(
+    .in1(in1),
+    .in2(in2),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum)
+  );
+   //
+   initial begin 
+     for(int i =0;i<8;i++)begin
+       {in1,in2,cin}=i;
+     #1 
+     $display("full_adder_testbench");
+     #5
+     assert(sum == (in1^in2^cin))
+       $display("correct assignement of sum");
+     else 
+       $error("wrong assignement of sum");
+     assert(cout == ((in1&in2)|(in2&cin)|(cin&in1)))
+       $display("correct assignement of cout");
+     else 
+       $error("wrong assignement of cout");
+     end
+     $finish;
+    end 
+endmodule 
 
-    full_adder dut(.a(a), .b(b), .cin(cin), .sum(sum), .cout(cout));
-
-    initial begin
-        $display("=== Full Adder Testbench ===");
-        for (int i = 0; i < 8; i++) begin
-            {a, b, cin} = i[2:0];
-            #10;
-            logic [1:0] expected = a + b + cin;
-            if ({cout, sum} !== expected) begin
-                $error("FAIL a=%b b=%b cin=%b | got cout=%b sum=%b, exp %02b",
-                        a, b, cin, cout, sum, expected);
-                errors++;
-            end else
-                $display("PASS a=%b b=%b cin=%b => sum=%b cout=%b", a, b, cin, sum, cout);
-        end
-        if (errors == 0) $display("ALL TESTS PASSED");
-        else             $display("%0d TEST(S) FAILED", errors);
-        $finish;
-    end
-endmodule
