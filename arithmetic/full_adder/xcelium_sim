@@ -1,0 +1,30 @@
+	tb_full_adder
+Loading snapshot worklib.tb_full_adder:sv .................... Done
+xcelium> source /xcelium25.03/tools/xcelium/files/xmsimrc
+xcelium> run
+full_adder_testbench
+correct assignement of sum
+correct assignement of cout
+full_adder_testbench
+correct assignement of sum
+correct assignement of cout
+full_adder_testbench
+correct assignement of sum
+correct assignement of cout
+full_adder_testbench
+correct assignement of sum
+correct assignement of cout
+full_adder_testbench
+correct assignement of sum
+correct assignement of cout
+full_adder_testbench
+correct assignement of sum
+correct assignement of cout
+full_adder_testbench
+correct assignement of sum
+correct assignement of cout
+full_adder_testbench
+correct assignement of sum
+correct assignement of cout
+Simulation complete via $finish(1) at time 48 NS + 0
+./testbench.sv:33      $finish;
