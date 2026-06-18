@@ -1,0 +1,12 @@
+	Top level design units:
+		tb_half_adder
+Loading snapshot worklib.tb_half_adder:sv .................... Done
+xcelium> source /xcelium25.03/tools/xcelium/files/xmsimrc
+xcelium> run
+a,b,cout,sum
+0 0 | 0 0
+0 1 | 0 1
+1 0 | 0 1
+1 1 | 1 0
+Simulation complete via $finish(1) at time 50 NS + 0
+./testbench.sv:48     $finish;
